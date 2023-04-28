@@ -1,34 +1,42 @@
-import java.util.Scanner;
+import classes.src.Company;
+import classes.src.Lobbyist;
+import classes.src.Senator;
 
-// TODO: properly import these classes.
-import Company;
-import Lobbyist;
-import Senator;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String input = "";
 
-        // Create a new company with two employees (lobbyists)
+        // Create a new company with two employees (lobbyists).
         Lobbyist[] employees = {new Lobbyist("John Smith", null), new Lobbyist("Jane Doe", null)};
         Company company = new Company("Acme Corporation", employees, null);
         
-        // Create a new lobbyist
+        // Create a new lobbyist.
         Lobbyist lobbyist = new Lobbyist("Bob Johnson", company);
+
+        // Create ArrayLists for Lobbyists and Companies in order to initialize Senator.
+        // ArrayList<Lobbyist> lobbyists = {lobbyist};
+        // ArrayList<Company> companies = {company};
         
-        // Create a new senator
-        Senator senator = new Senator("John Smith", 10000.0, 5, new Company[]{company}, new Lobbyist[]{lobbyist});
+        // Initialize Senator.
+        Senator senator = new Senator("John Smith", 100.00, 5);
 
         while (!input.equals("q")) {
-            System.out.print("Enter a command (q to quit): ");
+            System.out.println("Enter a command (q to quit): ");
             input = scanner.nextLine();
             
             // Do something based on the user's input
             // ...
+            String senatorName = senator.getName();
+            String lobbyistName = lobbyist.getName();
+
+            System.out.println("The senator name is: " + senatorName + " The lobbyist name is: " + lobbyistName);
         }
         
         System.out.println("Farewell!");
+        scanner.close();
     }
 }
 

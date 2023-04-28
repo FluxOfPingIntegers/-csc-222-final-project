@@ -1,4 +1,8 @@
+package classes.src;
+
 import java.util.ArrayList;
+import classes.src.Company;
+import classes.src.Lobbyist;
 
 public class Senator {
     private String name;
@@ -11,8 +15,8 @@ public class Senator {
         this.name = name;
         this.money = money;
         this.influence = influence;
-        this.companies = new ArrayList<>();
-        this.lobbyists = new ArrayList<>();
+        this.companies = companies;
+        this.lobbyists = lobbyists;
     }
 
     public boolean castVote(String input) {

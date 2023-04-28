@@ -1,3 +1,7 @@
+package classes.src;
+
+import classes.src.Company;
+
 public class Lobbyist {
     private String name;
     private Company employer;
@@ -7,29 +11,32 @@ public class Lobbyist {
         this.employer = employer;
     }
     
+    // ToDo: create typical slimely greeting for lobbyist.
     public String greet() {
-        return "Hello, my name is " + name + ". How can I assist you?";
+        return "Hello, my name is " + this.name + ". How can I assist you?";
     }
     
-    public double donate() {
-        double donationAmount = Math.random() * 10000; // generate a random donation amount
-        employer.addDonation(donationAmount); // add the donation to the employer's contributions
-        return donationAmount;
+    // give influence to Senator who is interested.
+    public int charm() {
+        return 10;
     }
     
-    // getters and setters for the name and employer fields
+    // getters and setters for the name and employer fields.
     public String getName() {
         return name;
     }
     
+    // set name of Lobbyist.
     public void setName(String name) {
         this.name = name;
     }
     
+    // return Company that employs Lobbyist.
     public Company getEmployer() {
         return this.employer;
     }
     
+    // set the Company that this Lobbyist works for.
     public void setEmployer(Company employer) {
         this.employer = employer;
     }
