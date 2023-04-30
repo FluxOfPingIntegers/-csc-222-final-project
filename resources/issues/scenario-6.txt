@@ -1,1 +1,6 @@
-Hello World 6
+Subject: ACME-Builder
+
+It has come time to reinvest in our military bases.
+If we don't spend the same budget as last year we won't get it the following year!
+We believe the contractors at ACME-Builder can replace what we built last year.
+Type y to vote yes or n to vote no:
