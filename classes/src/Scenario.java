@@ -1,9 +1,10 @@
 package classes.src;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+// import java.io.FileReader;
 import java.io.IOException;
-import java.io.FileNotFoundException;
+// import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 import java.util.Random;
 import classes.src.Company;
 import classes.src.Senator;
@@ -27,17 +28,14 @@ public class Scenario {
         int randomNumber = random.nextInt(10) + 1;
     
         String filename = "/resources/issues/scenario-" + randomNumber + ".txt";
-        System.out.println(filename);
         BufferedReader reader = null;
         StringBuilder builder = new StringBuilder();
         String line;
         try {
-            reader = new BufferedReader(new FileReader(filename));
+            reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(filename)));
             while ((line = reader.readLine()) != null) {
                 builder.append(line).append("\n");
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -51,5 +49,6 @@ public class Scenario {
         }
         return builder.toString();
     }
+    
     
 }
