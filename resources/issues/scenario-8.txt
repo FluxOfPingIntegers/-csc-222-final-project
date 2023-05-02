@@ -1,1 +1,6 @@
-Hello World 8
+Subject: ACME-Weapons
+
+A country has just democratically elected an official who won't do what we say!
+This country has a rebel force who will do what we say for weapons.
+We would like to give a contract to ACME-Weapons to manufacture weapons for the rebels.
+Type y to vote yes or n to vote no:
