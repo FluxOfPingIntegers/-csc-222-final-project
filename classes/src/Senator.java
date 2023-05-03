@@ -8,15 +8,45 @@ public class Senator {
     private String name;
     private double money;
     private int influence;
-    private ArrayList<Company> companies;
+    private ArrayList<Company> companies = new ArrayList<Company>();
     private ArrayList<Lobbyist> lobbyists;
 
     public Senator(String name, double money, int influence) {
         this.name = name;
         this.money = money;
         this.influence = influence;
-        this.companies = companies;
-        this.lobbyists = lobbyists;
+        this.lobbyists = Lobbyist.getList();
+    }
+
+    public boolean buyStock(Company company) {
+        String companyName = company.getName();
+        boolean canBuy = true;
+        boolean isFirst = this.getCompanies().isEmpty();
+        if (!isFirst) {
+            for (Company c : this.getCompanies()) {
+                if (c.getName().equals(companyName)) {
+                    canBuy = false;
+                    break;
+                }
+            }
+        }
+        if (canBuy) {
+            this.companies.add(company);
+        }
+        return canBuy;
+    }
+
+    public void printStats() {
+        double m = this.getMoney();
+        int i = this.getInfluence();
+        System.out.println("--current stats--");
+        System.out.println("your money: " + m);
+        System.out.println("your influence: " + i);
+        System.out.println("--enter q to quit anytime--");
+    }
+
+    public int getInfluence() {
+        return this.influence;
     }
 
     public boolean castVote(String input) {
@@ -48,6 +78,17 @@ public class Senator {
     public double addMoney(double money) {
         this.money += money;
         return this.money;
+    }
+
+    public int addInfluence(Lobbyist lobbyist) {
+        this.influence += lobbyist.charm();
+        double m = this.money * this.influence;
+        this.addMoney(m);
+        return this.influence;
+    }
+
+    public void setInfluence(int influence) {
+        this.influence = influence;
     }
 
     public char makeDecision(String decision) {

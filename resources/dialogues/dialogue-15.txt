@@ -4,3 +4,6 @@ You hear an ominous snicker from behind you as a lobbyist seems to materialize f
 They snear and extend a gloved hand towards you in the form of a handshake.
 You realize by shaking this hand you will receive influence from McTech in exchange
 for favoring their company for government contracts, and perphaps...part of your soul.
+
+Shake this hand and agree to this deal?
+Type y for yes or n for no:

@@ -1,19 +1,23 @@
 package classes.src;
 
+import java.util.ArrayList;
+
 import classes.src.Company;
 
 public class Lobbyist {
     private String name;
     private Company employer;
+    private static ArrayList<Lobbyist> list = new ArrayList<Lobbyist>();
     
-    public Lobbyist(String name, Company employer) {
+    public Lobbyist(String name) {
         this.name = name;
         this.employer = employer;
+        list.add(this);
     }
     
     // ToDo: create typical slimely greeting for lobbyist.
-    public String greet() {
-        return "Hello, my name is " + this.name + ". How can I assist you?";
+    public void greet() {
+        System.out.println("*Hiss* Hello, my name is " + this.name + ". I believe we can help each other...");
     }
     
     // give influence to Senator who is interested.
@@ -39,5 +43,9 @@ public class Lobbyist {
     // set the Company that this Lobbyist works for.
     public void setEmployer(Company employer) {
         this.employer = employer;
+    }
+
+    public static ArrayList<Lobbyist> getList() {
+        return list;
     }
 }

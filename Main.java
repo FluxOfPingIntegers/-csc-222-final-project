@@ -9,17 +9,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String input = "";
-
-        // Create a new company with two employees (lobbyists).
-        Lobbyist[] employees = {new Lobbyist("John Smith", null), new Lobbyist("Jane Doe", null)};
-        Company company = new Company("Acme Corporation", employees, null);
-        
-        // Create a new lobbyist.
-        Lobbyist lobbyist = new Lobbyist("Bob Johnson", company);
-
-        // Create ArrayLists for Lobbyists and Companies in order to initialize Senator.
-        // ArrayList<Lobbyist> lobbyists = {lobbyist};
-        // ArrayList<Company> companies = {company};
         
         // Initialize Senator.
         Senator senator = new Senator("John Smith", 100.00, 5);
@@ -35,21 +24,79 @@ public class Main {
             new Senator("Robert Cambell", 200.00, 3),
         };
 
-        while (!input.equals("q")) {
-            Scenario scenario = new Scenario(company, senators);
-            System.out.println("Enter a command (q to quit): ");
+        Lobbyist lobbyist1 = new Lobbyist("Lilith");
+        Lobbyist lobbyist2 = new Lobbyist("Damien");
+        Lobbyist lobbyist3 = new Lobbyist("Vlad");
+        Lobbyist lobbyist4 = new Lobbyist("Luther");
+        Lobbyist lobbyist5 = new Lobbyist("Pandora");
+        Lobbyist lobbyist6 = new Lobbyist("Brim");
+
+        new Company("McWeapons", lobbyist1);
+        new Company("ACME-Weapons", lobbyist2);
+        new Company("McTech", lobbyist3);
+        new Company("ACME-Tech", lobbyist4);
+        new Company("McBuilder", lobbyist5);
+        new Company("ACME-Builder", lobbyist6);
+
+        int turn = 1;
+        boolean isReplay = false;
+
+        while (!input.equalsIgnoreCase("q")) {
+            System.out.println();
+            System.out.println("NEW SCENARIO - (enter q to quit anytime)");
+            Scenario scenario = new Scenario(senators, senator);
             String message = scenario.issue();
             System.out.println(message);
             input = scanner.nextLine();
-            
-            // Do something based on the user's input
-            // ...
-            String senatorName = senator.getName();
-            String lobbyistName = lobbyist.getName();
+            if (input.equalsIgnoreCase("y") || input.equalsIgnoreCase("n")) {
+                scenario.resolve(input, isReplay);
+            }
+            senator.printStats();
 
-            System.out.println("The senator name is: " + senatorName + " " + "The lobbyist name is: " + lobbyistName);
+            turn += 1;
+            if (turn >= 9) {
+                System.out.println("Time for reelection!");
+                if (senator.getInfluence() < 50) {
+                    System.out.println("Sorry you are not a Senate Star and have lost reelection!");
+                    input = "q";
+                } else {
+                    System.out.println("You are a Senate Star!");
+                    System.out.println("Would you like to run for reelection?");
+                    System.out.println("Enter y for yes or n for no:");
+                    input = scanner.nextLine();
+                    boolean acceptAnswer = true;
+                    while (acceptAnswer) {
+                        if (input.equalsIgnoreCase("y")) {
+                            System.out.println("Very well, lets redraw your voting district and go again!");
+                            System.out.println("Also lets reinvest some of your earnings so no one cries scandal.");
+                            System.out.println("Don't worry, Senators make money faster the longer they're in office.");
+                            double dollars = senator.getMoney() - 100;
+                            senator.subtractMoney(dollars);
+                            acceptAnswer = false;
+                            turn = 1;
+                            isReplay = true;
+                            break;
+                        } else if (input.equalsIgnoreCase("n")) {
+                            System.out.println("Very well, maybe someone in your family can run instead!");
+                            acceptAnswer = false;
+                            input = "q";
+                            break;
+                        } else {
+                            System.out.println("Invalid input please select y to run again or n to retire.");
+                            System.out.println("You can also simple type q to quit:");
+                            input = scanner.nextLine();
+                            if (input.equalsIgnoreCase("q")) {
+                                acceptAnswer = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
         }
         
+        System.out.println("Here are your current stats at the end of the game!");
+        senator.printStats();
         System.out.println("Farewell!");
         scanner.close();
     }

@@ -1,18 +1,22 @@
 package classes.src;
 
+import java.util.ArrayList;
+
 import classes.src.Lobbyist;
 
 public class Company {
     private String name;
-    private Lobbyist[] employees;
+    private Lobbyist employee;
     private Company competitor;
     private double payoff;
+    private static ArrayList<Company> list = new ArrayList<Company>();
     
-    public Company(String name, Lobbyist[] employees, Company competitor) {
+    public Company(String name, Lobbyist employee) {
         this.name = name;
-        this.employees = employees;
+        this.employee = employee;
         this.competitor = competitor;
         this.payoff = 100.00;
+        list.add(this);
     }
     
     // getters and setters for the name, employees, and competitor fields
@@ -26,14 +30,9 @@ public class Company {
         this.name = name;
     }
     
-    // return all Lobbyists employed by this company.
-    public Lobbyist[] getEmployees() {
-        return this.employees;
-    }
-    
-    // list of Lobbyists who can add this Company to the Senator classes companies list.
-    public void setEmployees(Lobbyist[] employees) {
-        this.employees = employees;
+    // return Lobbyist employed by this company.
+    public Lobbyist getEmployee() {
+        return this.employee;
     }
     
     // return the competing company for this instance.
@@ -50,5 +49,9 @@ public class Company {
     public double donate() {
         this.payoff *= 1.25;
         return this.payoff;
+    }
+
+    public static ArrayList<Company> getList() {
+        return list;
     }
 }
